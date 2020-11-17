@@ -5,12 +5,12 @@
         //$pass = getenv("db_pass");
         //echo $pass;
         //pass will be an env var in container
-        $mysqli = new mysqli("localhost", "app", "pass", "webshop");
-        if ($mysqli->connect_errno) {
-            echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+        $mysql = new mysqli("localhost", "app", "pass", "webshop");
+        if ($mysql->connect_errno) {
+            echo "Failed to connect to MySQL: (" . $mysql->connect_errno . ") " . $mysql->connect_error;
             exit("Fehler DB-Connect");
         }
-        return $mysqli;
+        return $mysql;
     }
     
     function db_select(){
