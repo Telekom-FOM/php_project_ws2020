@@ -48,10 +48,38 @@
             return False;
         }
     }
-    if (db_check_if_user("Max.benkert@gmx.de")){
-        echo "User existiert";
+
+    function db_create_user($email, $password) {
+        $mysql = db_connect();
+
+        if (!db_check_if_user($email)) {
+            $sql = "INSERT INTO users (email, password) VALUES (?,MD5(?))";
+            $con = $mysql->prepare($sql);
+            $con->bind_param("ss", $email, $password);
+            if ($con->execute() === TRUE) {
+                echo "Klappt";
+            }
+            else {
+                echo $con->error;
+            }
+        }
     }
-    else  {
-        echo "User nicht gefunden";
+
+    function db_check_login($email, $password) {
+        $mysqli = db_connect();
+        if (db_check_if_user($email)){
+            $sql = "SELECT * FROM users where email=? and password=MD5(?)";
+            $con = $mysqli->prepare($sql);
+            $con->bind_param("ss", $email, $password);
+            $con->execute();
+           if ($con->get_result()->num_rows == 1) {
+               echo "Login richtig";
+           }
+           else {
+               echo "Login falsch";
+           }
+        }
     }
+
+    db_check_login("enkertmax@gmail.com","lub");
 ?>
