@@ -81,5 +81,4 @@
         }
     }
 
-    db_check_login("enkertmax@gmail.com","lub");
 ?>
