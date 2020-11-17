@@ -1,5 +1,6 @@
 <?php
     
+    //Returns DB-Connection
     function db_connect() {
         //$pass = getenv("db_pass");
         //echo $pass;
@@ -7,6 +8,7 @@
         $mysqli = new mysqli("localhost", "app", "pass", "webshop");
         if ($mysqli->connect_errno) {
             echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+            exit("Fehler DB-Connect");
         }
         return $mysqli;
     }
@@ -20,6 +22,7 @@
         }
     }
 
+    //Returns array of with all user-emails
     function db_get_all_user() {
         $mysqli = db_connect();
         $mysqli->real_query("Select * from users");
@@ -29,9 +32,10 @@
             $users[] = $row['email'];
         }
         $mysqli->close();
-        print_r($users);
+        return $users;
     }
 
+    //Returns true or false if user (not) exists
     function db_check_if_user($email) {
         $mysqli = db_connect();
         $query = ("Select email from users where email=?");
@@ -42,13 +46,14 @@
         $res = $res->num_rows;
         
         if ($res == 1) {
-            return True;
+            return TRUE;
         }
         else {
-            return False;
+            return FALSE;
         }
     }
 
+    //Returns TRUE or FALSE if user (not) created
     function db_create_user($email, $password) {
         $mysql = db_connect();
 
@@ -57,14 +62,18 @@
             $con = $mysql->prepare($sql);
             $con->bind_param("ss", $email, $password);
             if ($con->execute() === TRUE) {
-                echo "Klappt";
+                return TRUE;
             }
             else {
-                echo $con->error;
+                return FALSE;
             }
         }
+        else {
+        return FALSE;
+        }
     }
-
+    
+    //Returns TRUE or FALSE if login was (not) correct    
     function db_check_login($email, $password) {
         $mysqli = db_connect();
         if (db_check_if_user($email)){
@@ -73,11 +82,14 @@
             $con->bind_param("ss", $email, $password);
             $con->execute();
            if ($con->get_result()->num_rows == 1) {
-               echo "Login richtig";
+               return TRUE;
            }
            else {
-               echo "Login falsch";
+               return FALSE;
            }
+        }
+        else {
+            return FALSE;
         }
     }
 
