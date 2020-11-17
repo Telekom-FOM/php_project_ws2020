@@ -1,7 +1,7 @@
 <?php
-include("base.html");
+include("html_include/base.html");
 echo "<title>Das ist ein Shop</title>";
-include("header.html");
+include("html_include/header.html");
 echo "Hello World";
 echo "das ist ein test";
 ?>
