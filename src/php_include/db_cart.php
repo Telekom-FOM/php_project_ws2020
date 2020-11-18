@@ -3,7 +3,7 @@ include("php_include/db_user.php");
 
 //Returns TRUE if cart created
 function db_add_cart($kdNr) {
-    $mysql = db_connect();
+    $mysqli = db_connect();
     $sql = "INSERT INTO cart (fk_kdnr) VALUES (?)";
     $con = $mysql->prepare($sql);
     $con->bind_param("i", $kdNr);
@@ -50,9 +50,9 @@ function db_get_cart($kdNr) {
 //Returns TRUE or FALSE if article added to cart
 function db_add_to_cart($kdNr, $article, $amount) {
     $cartID = db_get_cart($kdNr);
-    $mysql = db_connect();
+    $mysqli = db_connect();
     $sql = "INSERT INTO cart_content (fk_cart_id, fk_article, amount) VALUES (?,?,?)";
-    $con = $mysql->prepare($sql);
+    $con = $mysqli->prepare($sql);
     $con->bind_param("iii", $cartID, $article, $amount);
     if ($con->execute() === TRUE) {
         return TRUE;

@@ -9,11 +9,10 @@ include("./php_include/db_basic.php");
         while ($row = $res->fetch_assoc()) {
             $users[] = $row['email'];
         }
-        $mysqli->close();
         return $users;
     }
 
-    //Returns true or false if user (not) exists
+    //Returns TRUE or FALSE if user (not) exists
     function db_check_if_user($email) {
         $mysqli = db_connect();
         $query = ("SELECT email from user where email=?");
