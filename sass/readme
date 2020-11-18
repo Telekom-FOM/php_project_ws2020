@@ -1,0 +1,10 @@
+sass <sass-file> <output-css-file>
+
+
+gute vscode extension:
+Name: Sass
+Id: syler.sass-indented
+Description: Indented Sass syntax Highlighting, Autocomplete & Formatter
+Version: 1.8.13
+Publisher: Syler
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=Syler.sass-indented
