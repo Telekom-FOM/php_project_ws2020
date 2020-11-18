@@ -10,7 +10,7 @@ function send_login_mail($email) {
         'api_key' => $GLOBALS['pass'],
         'to' => $email,
         'subject' => 'Herzlich Willkommen bei Jupiter-Store.de!',
-        'html' => 'Sehr geehrter Kunde, herzlich Willkommen bei Jupiter-Store.de! Dem wahrscheinlich besten Onlineshop der Welt.',
+        'html' => '<img src="https://jupiter-store.de/php_include/test.jpg" alt="picture"><p>Sehr geehrter Kunde, herzlich Willkommen bei Jupiter-Store.de! Dem wahrscheinlich besten Onlineshop der Welt.',
         'text' => 'Sehr geehrter Kunde, herzlich Willkommen bei Jupiter-Store.de! Dem wahrscheinlich besten Onlineshop der Welt.',
         'from' => 'benkertmax@web.de',
         'fromname' => 'Jupiter-Store.de'
@@ -44,5 +44,5 @@ function sendMail($params) {
  // print everything out
  print_r($response);
 }
-
+send_login_mail("max.benkert@gmx.de");
 ?>
