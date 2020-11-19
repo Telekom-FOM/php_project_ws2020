@@ -37,5 +37,28 @@ function db_get_articles_from_category($cat_id) {
     return $articles;
 }
 
-print_r(db_get_categories());
+function db_get_article_from_id($art_id) {
+    $mysqli = db_connect();
+    $sql = "SELECT * FROM article where article_nr=?";
+    $con = $mysqli->prepare($sql);
+    $con->bind_param("i", $art_id);
+    $con->execute();
+    $res = $con->get_result();
+    if ($res->num_rows == 0) {
+        return FALSE;
+    }
+    else {
+            $articles = array();
+            $i = 0;
+            while ($row = $res->fetch_assoc()) {
+                $articles[$i]['article_nr'] = $row['article_nr'];
+                $articles[$i]['name'] = $row['name'];
+                $articles[$i]['price'] = $row['price'];
+                $i++;
+            }
+    }
+    return $articles;
+}
+
+print_r(db_get_article_from_id(7632));
 ?>
