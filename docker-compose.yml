@@ -7,10 +7,13 @@ services:
         tty: true
         ports:
           - '8080:80'
-    # mariadb:
-        # restart: always
-        # build:
-          # dockerfile: Dockerfile
-          # context: ./controller
-        # ports:
-          # - '5000:80'
+    mysql:
+        image: mariadb:10.3
+        restart: always
+        container_name: mariadb
+        volumes:
+          - ./db:/docker-entrypoint-initdb.d
+        environment:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - "3300:3306"
