@@ -60,5 +60,4 @@ function db_get_article_from_id($art_id) {
     return $articles;
 }
 
-print_r(db_get_article_from_id(7632));
 ?>
