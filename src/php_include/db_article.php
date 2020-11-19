@@ -1,5 +1,4 @@
 <?php
-include("php_include/db_user.php");
 
 //Returns category ids
 function db_get_categories() {
@@ -60,4 +59,25 @@ function db_get_article_from_id($art_id) {
     return $articles;
 }
 
+function db_get_all_article() {
+    $mysqli = db_connect();
+    $sql = "SELECT * FROM article";
+    $con = $mysqli->prepare($sql);
+    $con->execute();
+    $res = $con->get_result();
+    if ($res->num_rows == 0) {
+        return FALSE;
+    }
+    else {
+            $articles = array();
+            $i = 0;
+            while ($row = $res->fetch_assoc()) {
+                $articles[$i]['article_nr'] = $row['article_nr'];
+                $articles[$i]['name'] = $row['name'];
+                $articles[$i]['price'] = $row['price'];
+                $i++;
+            }
+    }
+    return $articles;
+}
 ?>
