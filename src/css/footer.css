@@ -7,3 +7,23 @@ footer {
     color: #f2f2f2;
     text-align: center;
   }
+
+  /* unvisited link */
+footer a:link {
+  color: rgb(188,0,0);
+}
+
+/* visited link */
+footer a:visited {
+  color: rgb(188,0,0);
+}
+
+/* mouse over link */
+footer a:hover {
+  color: rgb(188,0,0);
+}
+
+/* selected link */
+footer a:active {
+  color: rgb(188,0,0);
+}
