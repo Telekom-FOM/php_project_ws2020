@@ -12,9 +12,11 @@ include("html_include/header.html");
 
 <?php
 include("php_include/db_user.php");
+include("php_include/session.php");
 if (isset($_POST["email"])){
     if(db_check_if_user($_POST["email"])) {
         echo "User exists!";
+        session_create($_POST["email"]);
     }
     else {
         echo "User does not exist!";

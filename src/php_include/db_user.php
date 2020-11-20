@@ -6,8 +6,18 @@ include("./php_include/db_basic.php");
         $mysqli->real_query("SELECT * FROM user");
         $res = $mysqli->use_result();
         $users = array();
+        $i = 0;
         while ($row = $res->fetch_assoc()) {
-            $users[] = $row['email'];
+            $users[$i]['kd_nr'] = $row['kd_nr'];
+            $users[$i]['email'] = $row['email'];
+            $users[$i]['firstname'] = $row['firstname'];
+            $users[$i]['lastname'] = $row['lastname'];
+            $users[$i]['street'] = $row['street'];
+            $users[$i]['zip'] = $row['zip'];
+            $users[$i]['city'] = $row['city']; 
+            $users[$i]['country'] = $row['country'];
+            $users[$i]['phone'] = $row['phone'];
+            $i++;
         }
         return $users;
     }
