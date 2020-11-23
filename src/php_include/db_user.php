@@ -42,7 +42,7 @@ include("./php_include/db_basic.php");
 
     //Returns TRUE or FALSE if user (not) created
     function db_create_user($email, $password, $firstname, $lastname, $street, $zip, $city, $country, $phone) {
-        $mysqli = db_connect();
+        $mysql = db_connect();
 
         if (!db_check_if_user($email)) {
             $sql = "INSERT INTO user (email, password, firstname, lastname, street, zip, city, country, phone) VALUES (?,MD5(?),?,?,?,?,?,?,?)";

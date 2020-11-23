@@ -1,6 +1,7 @@
 <?php
 include("html_include/base.html");
 echo "<title>Das ist ein Shop</title>";
+include("php_include/session.php");
 include("html_include/header.html");
 if (isset($_GET['id'])) {
     include('php_include/db_article.php');
