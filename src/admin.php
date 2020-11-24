@@ -1,11 +1,28 @@
 <?php
 include("html_include/base.html");
 echo "<title>Das ist ein Shop</title>";
-include("html_include/header.html");
+include("php_include/session.php");
+include("html_include/header.php");
 include('php_include/db_user.php');
 include('php_include/db_article.php');
-session_start();
-echo $_SESSION["user"], '<br>';
+if (isset($_SESSION['user']) && $_SESSION['user'] != "max.benkert@gmx.de") {
+    header("Location: /");
+}
+
+//Print logs for debugging
+if (isset($_SESSION['log']) && $_GET["log"] == "access" | $_GET["log"] == "error") {
+    if ($_GET["log"] == "access") {
+        $log = fopen("/var/log/apache2/access.log", "r");
+    }
+    else {
+        $log = fopen("/var/log/apache2/error.log", "r");
+    }
+    echo "<table border = 1>";
+    while (($line = fgets($log)) !== false) {
+        echo "<tr><td>$line</td></tr>";
+    }
+    fclose($log);
+}
 
 $users = db_get_all_user();
 

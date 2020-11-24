@@ -1,5 +1,6 @@
 <?php
-include("php_include/db_user.php");
+require_once("php_include/db_basic.php");
+require_once("php_include/db_user.php");
 
 //Returns TRUE if cart created
 function db_add_cart($kdNr) {

@@ -2,7 +2,7 @@
 include("html_include/base.html");
 echo "<title>Das ist ein Shop</title>";
 include("php_include/session.php");
-include("html_include/header.html");
+include("html_include/header.php");
 ?>
 <html>
     <body>

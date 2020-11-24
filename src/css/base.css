@@ -10,8 +10,14 @@ body {
     font-size: 26px;
 }
 .content{
-    margin: 5rem;
+    margin: 10rem;
 }
+
+label {
+    display: inline-block;
+    width: 140px;
+    text-align: right;
+  }​
 
 :root {
     margin: 0;
@@ -35,3 +41,5 @@ body {
     color: red;
     background: yellow;
   }
+
+  

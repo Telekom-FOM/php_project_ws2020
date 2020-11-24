@@ -1,17 +1,17 @@
 <?php
 //DO NOT TOUCH
-$GLOBALS['user'] = 'azure_998ff1414574dfc286422689c66c64ae@azure.com';
-$GLOBALS['pass'] = 'DjkklhhNF898&&=2KLmdaska';
+$GLOBALS['user'] = 'azure_8c7b46e89696d508db898cdba0f133c5@azure.com';
+$GLOBALS['pass'] = "eL!@Bv['#,PacW/<3x\`";
 
 //Creates mailcontent of welcome mail and sends
-function send_login_mail($email) {
+function send_login_mail($email, $firstname, $lastname) {
     $params = array(
         'api_user' => $GLOBALS['user'],
         'api_key' => $GLOBALS['pass'],
         'to' => $email,
         'subject' => 'Herzlich Willkommen bei Jupiter-Store.de!',
         'html' => '<img src="https://jupiter-store.de/php_include/test.jpg" alt="picture"><p>Sehr geehrter Kunde, herzlich Willkommen bei Jupiter-Store.de! Dem wahrscheinlich besten Onlineshop der Welt.',
-        'text' => 'Sehr geehrter Kunde, herzlich Willkommen bei Jupiter-Store.de! Dem wahrscheinlich besten Onlineshop der Welt.',
+        'text' => 'Sehr geehrte/r Frau/Herr ' . $firstname . ' ' . $lastname . ' , herzlich Willkommen bei Jupiter-Store.de! Dem wahrscheinlich besten Onlineshop der Welt.',
         'from' => 'benkertmax@web.de',
         'fromname' => 'Jupiter-Store.de'
      );
@@ -59,5 +59,4 @@ function sendMail($params) {
  // print everything out
  print_r($response);
 }
-send_login_mail("max.benkert@gmx.de");
 ?>

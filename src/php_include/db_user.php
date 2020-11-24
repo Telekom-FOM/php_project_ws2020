@@ -1,10 +1,10 @@
 <?php
-include("./php_include/db_basic.php");
-    //Returns array of with all user-emails
+require_once("php_include/db_basic.php");
+//Returns array of with all user-emails
     function db_get_all_user() {
         $mysqli = db_connect();
-        $mysqli->real_query("SELECT * FROM user");
-        $res = $mysqli->use_result();
+        $sql = "SELECT * FROM user";
+        $res = $mysqli->query($sql);
         $users = array();
         $i = 0;
         while ($row = $res->fetch_assoc()) {
@@ -49,6 +49,8 @@ include("./php_include/db_basic.php");
             $con = $mysql->prepare($sql);
             $con->bind_param("sssssssss", $email, $password, $firstname, $lastname, $street, $zip, $city, $country, $phone);
             if ($con->execute() === TRUE) {
+                require_once("php_include/mail_helper.php");
+                send_login_mail($email, $firstname, $lastname);
                 return TRUE;
             }
             else {

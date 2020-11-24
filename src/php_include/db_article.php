@@ -1,10 +1,10 @@
 <?php
-
+require_once("php_include/db_basic.php");
 //Returns category ids
 function db_get_categories() {
     $mysqli = db_connect();
-    $mysqli->real_query("SELECT * FROM article_category");
-    $res = $mysqli->use_result();
+    $sql = "SELECT * FROM article_category";
+    $res = $mysqli->query($sql);
     $categorys = array();
     while ($row = $res->fetch_assoc()) {
         $categorys[] = $row['name'];
@@ -62,9 +62,7 @@ function db_get_article_from_id($art_id) {
 function db_get_all_article() {
     $mysqli = db_connect();
     $sql = "SELECT * FROM article";
-    $con = $mysqli->prepare($sql);
-    $con->execute();
-    $res = $con->get_result();
+    $res = $mysqli->query($sql);
     if ($res->num_rows == 0) {
         return FALSE;
     }
