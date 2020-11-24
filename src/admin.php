@@ -1,11 +1,11 @@
 <?php
-include("html_include/base.html");
+require_once("html_include/base.html");
 echo "<title>Das ist ein Shop</title>";
-include("php_include/session.php");
-include("html_include/header.php");
-include('php_include/db_user.php');
-include('php_include/db_article.php');
-if (isset($_SESSION['user']) && $_SESSION['user'] != "max.benkert@gmx.de") {
+require_once("php_include/session.php");
+require_once("html_include/header.php");
+require_once('php_include/db_user.php');
+require_once('php_include/db_article.php');
+if (isset($_SESSION['user']) && $_SESSION['user'] != "1008") {
     header("Location: /");
 }
 

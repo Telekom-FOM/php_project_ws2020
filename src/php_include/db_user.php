@@ -101,5 +101,14 @@ require_once("php_include/db_basic.php");
             return FALSE;
         }
     }
+    function db_get_kdNr($email) {
+        $mysqli = db_connect();
+            $sql = "SELECT kd_nr FROM user where email=?";
+            $con = $mysqli->prepare($sql);
+            $con->bind_param("s", $email);
+            $con->execute();
+            $res = $con->get_result();
+            return $res->fetch_assoc()["kd_nr"];
+        }
 
 ?>

@@ -6,7 +6,7 @@ require_once("php_include/db_user.php");
 function db_add_cart($kdNr) {
     $mysqli = db_connect();
     $sql = "INSERT INTO cart (fk_kdnr) VALUES (?)";
-    $con = $mysql->prepare($sql);
+    $con = $mysqli->prepare($sql);
     $con->bind_param("i", $kdNr);
     if ($con->execute() === TRUE) {
         return TRUE;
@@ -52,9 +52,18 @@ function db_get_cart($kdNr) {
 function db_add_to_cart($kdNr, $article, $amount) {
     $cartID = db_get_cart($kdNr);
     $mysqli = db_connect();
-    $sql = "INSERT INTO cart_content (fk_cart_id, fk_article, amount) VALUES (?,?,?)";
-    $con = $mysqli->prepare($sql);
-    $con->bind_param("iii", $cartID, $article, $amount);
+    $in_cart = db_already_in_cart($cartID, $article);
+    if ($in_cart > 0) {
+        $sql = "UPDATE `cart_content` SET `amount` = ? where `fk_article` = ? and `fk_cart_id` = ?";
+        $con = $mysqli->prepare($sql);
+        $amount += $in_cart;
+        $con->bind_param("iii", $amount, $article, $cartID);
+    }
+    else {
+        $sql = "INSERT INTO cart_content (fk_cart_id, fk_article, amount) VALUES (?,?,?)";
+        $con = $mysqli->prepare($sql);
+        $con->bind_param("iii", $cartID, $article, $amount);
+    }
     if ($con->execute() === TRUE) {
         return TRUE;
     }
@@ -63,5 +72,42 @@ function db_add_to_cart($kdNr, $article, $amount) {
     }
 } 
 
+function db_show_cart($kdNr) {
+    $mysqli = db_connect();
+    $sql = "SELECT * FROM cart JOIN cart_content ON fk_cart_id = cart.id JOIN article ON fk_article = article_nr WHERE cart.fk_kdnr = ?";
+    $con = $mysqli->prepare($sql);
+    $con->bind_param("s", $kdNr);
+    $con->execute();
+    $res = $con->get_result();
+    if ($res->num_rows >= 1) {
+        $content = array();
+        $i = 0;
+        while ($row = $res->fetch_assoc()) {
+            $content[$i] = $row;
+            $i++;
+        }
+        return $content;
+    }
+    else {
+        return FALSE;
+    }
+}
 
+function db_already_in_cart($cartID, $article) {
+    $mysqli = db_connect();
+        $query = ("SELECT amount FROM cart_content WHERE fk_article = ? AND fk_cart_id = ?");
+        $res = $mysqli->prepare($query);
+        $res->bind_param("ii", $article, $cartID);
+        $res->execute();   
+        $res = $res->get_result();
+        
+        if ($res->num_rows == 1) {
+            $res = $res->fetch_assoc();
+            return $res['amount'];
+        
+        }
+        else {
+            return "blub";
+        }
+    }
 ?>
