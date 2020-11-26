@@ -1,5 +1,6 @@
 <?php
 require_once("php_include/db_basic.php");
+require_once("php_include/classes.php");
 //Returns array of with all user-emails
     function db_get_all_user() {
         $mysqli = db_connect();
@@ -8,15 +9,16 @@ require_once("php_include/db_basic.php");
         $users = array();
         $i = 0;
         while ($row = $res->fetch_assoc()) {
-            $users[$i]['kd_nr'] = $row['kd_nr'];
-            $users[$i]['email'] = $row['email'];
-            $users[$i]['firstname'] = $row['firstname'];
-            $users[$i]['lastname'] = $row['lastname'];
-            $users[$i]['street'] = $row['street'];
-            $users[$i]['zip'] = $row['zip'];
-            $users[$i]['city'] = $row['city']; 
-            $users[$i]['country'] = $row['country'];
-            $users[$i]['phone'] = $row['phone'];
+            $users[$i] = new User;
+            $users[$i]->kd_nr = $row['kd_nr'];
+            $users[$i]->email = $row['email'];
+            $users[$i]->firstname = $row['firstname'];
+            $users[$i]->lastname = $row['lastname'];
+            $users[$i]->street = $row['street'];
+            $users[$i]->zip = $row['zip'];
+            $users[$i]->city = $row['city']; 
+            $users[$i]->country = $row['country'];
+            $users[$i]->phone = $row['phone'];
             $i++;
         }
         return $users;
