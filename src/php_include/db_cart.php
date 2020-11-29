@@ -19,7 +19,7 @@ function db_add_cart($kdNr) {
 //Returns TRUE or FALSE if cart (not) exists
 function db_check_if_cart($kdNr) {
     $mysqli = db_connect();
-    $sql = "SELECT * FROM cart where fk_kdnr=?";
+    $sql = "SELECT * FROM cart where fk_kdnr=? AND cart.ordered = 0";
     $con = $mysqli->prepare($sql);
     $con->bind_param("i", $kdNr);
     $con->execute();
@@ -38,7 +38,7 @@ function db_get_cart($kdNr) {
     if (!db_check_if_cart($kdNr)) {
         db_add_cart($kdNr);
     }
-    $sql = "SELECT * FROM cart where fk_kdnr=?";
+    $sql = "SELECT * FROM cart where fk_kdnr=? AND cart.ordered = 0";
     $con = $mysqli->prepare($sql);
     $con->bind_param("i", $kdNr);
     $con->execute();
@@ -74,7 +74,7 @@ function db_add_to_cart($kdNr, $article, $amount) {
 
 function db_show_cart($kdNr) {
     $mysqli = db_connect();
-    $sql = "SELECT * FROM cart JOIN cart_content ON fk_cart_id = cart.id JOIN article ON fk_article = article_nr WHERE cart.fk_kdnr = ?";
+    $sql = "SELECT * FROM cart JOIN cart_content ON fk_cart_id = cart.id JOIN article ON fk_article = article_nr WHERE cart.fk_kdnr = ? AND cart.ordered = 0";
     $con = $mysqli->prepare($sql);
     $con->bind_param("s", $kdNr);
     $con->execute();
@@ -110,4 +110,35 @@ function db_already_in_cart($cartID, $article) {
             return "blub";
         }
     }
+
+function db_order($kdNr) {
+    $cartID = db_get_cart($kdNr);
+    $mysqli = db_connect();
+    $sql = "UPDATE cart SET ordered = 1 where fk_kdnr = ?";
+    $con = $mysqli->prepare($sql);
+    $con->bind_param("i", $kdNr);
+    $con->execute();
+}
+
+function db_get_orders($kdNr) {
+    echo $kdNr;
+    $mysqli = db_connect();
+    $sql = "SELECT * FROM cart JOIN cart_content ON fk_cart_id = cart.id JOIN article ON fk_article = article_nr WHERE cart.fk_kdnr = ? AND cart.ordered = 1";
+    $con = $mysqli->prepare($sql);
+    $con->bind_param("s", $kdNr);
+    $con->execute();
+    $res = $con->get_result();
+    if ($res->num_rows >= 1) {
+        $content = array();
+        $i = 0;
+        while ($row = $res->fetch_assoc()) {
+            $content[$i] = $row;
+            $i++;
+        }
+        return $content;
+    }
+    else {
+        return FALSE;
+    }
+}
 ?>
