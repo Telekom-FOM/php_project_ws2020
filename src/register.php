@@ -1,8 +1,8 @@
 <?php
-require_once("html_include/base.html");
+require_once("php_include/basic_includes.php");
+require_once("php_include/db_user.php");
+
 echo "<title>Das ist ein Shop</title>";
-require_once("php_include/session.php");
-require_once("html_include/header.php");
 ?>
 <html>
     <body>
@@ -29,7 +29,7 @@ require_once("html_include/header.php");
 </form>
 
 <?php
-require_once("php_include/db_user.php");
+
 
 if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["firstname"]) && isset($_POST["lastname"]) && isset($_POST["street"]) && isset($_POST["zip"]) && isset($_POST["city"]) && isset($_POST["phone"])){
     if(!db_check_if_user($_POST["email"])) {

@@ -1,14 +1,13 @@
 <?php
-include("html_include/base.html");
+require_once("php_include/basic_includes.php");
+require_once('php_include/db_article.php');
+
 echo "<title>Das ist ein Shop</title>";
-include("php_include/session.php");
-include("html_include/header.php");
 ?>
 >
 
 <?php
 if (isset($_GET['id'])) {
-    include('php_include/db_article.php');
     $article = db_get_article_from_id($_GET['id']);
     if ($article) {
         print_r($article);

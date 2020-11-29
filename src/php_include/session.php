@@ -1,7 +1,8 @@
 <?php
 
 function session_create($user) {
-    $_SESSION['user'] = $user;
+    //when saving object in $_SESSION, serialization is required
+    $_SESSION['user'] = serialize($user);
 }
 
 session_start();

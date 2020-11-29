@@ -6,7 +6,7 @@
     <a href="/">&#x2302</a>
     <a href="/about.php">About</a>
     <?php
-    if ($_SESSION["user"] == "1008") {
+    if (unserialize($_SESSION["user"])->kd_nr == "1008") {
         echo '<a href="/admin.php">Admin</a>'; } 
         if (isset($_SESSION['user'])) {
             echo '<a href="/logout.php">Logout</a>'; }
