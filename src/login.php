@@ -11,6 +11,7 @@ echo "<title>Das ist ein Shop</title>";
             <input type="password" name="password" placeholder="password" required>
             <input type="submit">
 </form>
+<a href="/register.php">Konto erstellen!</a>
 
 <?php
 

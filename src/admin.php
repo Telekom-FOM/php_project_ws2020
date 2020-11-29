@@ -1,9 +1,11 @@
 <?php
 require_once("php_include/basic_includes.php");
-echo "<title>Das ist ein Shop</title>";
 require_once('php_include/db_user.php');
 require_once('php_include/db_article.php');
-if (isset($_SESSION['user']) && unserialize($_SESSION['user'])->kd_nr != "1008") {
+
+echo "<title>Das ist ein Shop</title>";
+if (isset($_SESSION['user']) && (unserialize($_SESSION['user'])->kd_nr != "1008" || unserialize($_SESSION["user"]->kd_nr))) {
+
     header("Location: /");
 }
 

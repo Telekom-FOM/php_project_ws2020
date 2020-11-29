@@ -6,7 +6,7 @@ echo "<title>Das ist ein Shop</title>";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     echo "danke für die bestellung. Sie werden weitergeleitet";
-    db_order(unserialize($_SESSION["user"])->kd_nr);
+    db_order(unserialize($_SESSION["user"]));
     header("Location: /orders.php?source=cart");
 }
 else {
