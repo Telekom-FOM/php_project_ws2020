@@ -7,7 +7,7 @@ echo "<title>Das ist ein Shop</title>";
 if (!isset($_SESSION["user"])){
     header("Location: /");
 }
-if ($_GET["source"] == "cart") {
+if (isset($_GET["source"]) && $_GET["source"] == "cart") {
     echo "Vielen Dank für Ihre Bestellung!";
 }
 $orders = db_get_orders(unserialize($_SESSION["user"])->kd_nr);

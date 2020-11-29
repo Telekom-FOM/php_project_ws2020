@@ -1,6 +1,7 @@
 <?php
 require_once("php_include/db_basic.php");
 require_once("php_include/db_user.php");
+require_once("php_include/mail_helper.php");
 
 //Returns TRUE if cart created
 function db_add_cart($kdNr) {
@@ -111,13 +112,14 @@ function db_already_in_cart($cartID, $article) {
         }
     }
 
-function db_order($kdNr) {
-    $cartID = db_get_cart($kdNr);
+function db_order($user) {
+    $cartID = db_get_cart($user->kd_nr);
     $mysqli = db_connect();
     $sql = "UPDATE cart SET ordered = 1 where fk_kdnr = ?";
     $con = $mysqli->prepare($sql);
-    $con->bind_param("i", $kdNr);
+    $con->bind_param("i", $user->kd_nr);
     $con->execute();
+    send_order_mail($user);
 }
 
 function db_get_orders($kdNr) {

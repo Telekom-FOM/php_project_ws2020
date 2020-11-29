@@ -19,14 +19,14 @@ function send_login_mail($email, $firstname, $lastname) {
 }
 
 //Creates mailcontent of order mail and sends
-function send_order_mail($email) {
+function send_order_mail($user) {
     $params = array(
         'api_user' => $GLOBALS['user'],
         'api_key' => $GLOBALS['pass'],
-        'to' => $email,
+        'to' => $user->email,
         'subject' => 'Vielen Dank für Ihren Einkauf bei Jupiter-Store.de!',
         'html' => '<img src="https://jupiter-store.de/php_include/test.jpg" alt="picture"><p>Sehr geehrter Kunde, vielen Dank für Ihren Einkauf bei Jupiter-Store.de! Dem wahrscheinlich besten Onlineshop der Welt.',
-        'text' => 'Sehr geehrter Kunde, vielen Dank für Ihren Einkauf bei Jupiter-Store.de! Dem wahrscheinlich besten Onlineshop der Welt.',
+        'text' => 'Sehr geehrte/r ' . $user->firstname . " " . $user->lastname .', vielen Dank für Ihren Einkauf bei Jupiter-Store.de! Dem wahrscheinlich besten Onlineshop der Welt.',
         'from' => 'benkertmax@web.de',
         'fromname' => 'Jupiter-Store.de'
      );

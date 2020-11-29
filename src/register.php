@@ -30,10 +30,16 @@ echo "<title>Das ist ein Shop</title>";
 
 <?php
 
+if (isset($_SESSION["temp_cart"]))
+    $ifcart = "?source=cart";
+    else {
+        $idcart = "";
+    }
 
 if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["firstname"]) && isset($_POST["lastname"]) && isset($_POST["street"]) && isset($_POST["zip"]) && isset($_POST["city"]) && isset($_POST["phone"])){
     if(!db_check_if_user($_POST["email"])) {
         db_create_user($_POST["email"], $_POST["password"], $_POST["firstname"], $_POST["lastname"], $_POST["street"], $_POST["zip"], $_POST["city"], $_POST["country"], $_POST["phone"]);
+        header("Location: /login.php$ifcart");
     }
     else {
         echo "email schon vorhanden";
