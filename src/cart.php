@@ -10,11 +10,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     header("Location: /orders.php");
 }
 else {
-    echo "<pre>";
-    print_r(db_show_cart(unserialize($_SESSION["user"])->kd_nr));
+    $cart = db_show_cart(unserialize($_SESSION["user"])->kd_nr);
+    if ($cart) {
+        echo "<pre>";
+        print_r($cart);
+        echo "<form method='POST'>
+        <input type='submit' name='order' value='bestellen'>
+        </form>";
+    }
+    else {
+        echo "Sie haben nichts im Einkaufswagen!";
+    }
 }
 ?>
 
-<form method="POST">
-    <input type="submit" name="order" value="bestellen">
-</form>

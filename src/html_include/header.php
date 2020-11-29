@@ -13,7 +13,10 @@
         else {
             echo '<a href="/login.php">Login</a>';
         }
-    echo $_SESSION['user'];
+    if (isset($_SESSION["user"])){
+        echo "<a href='/orders.php'>Orders</a><a href='/cart.php'>Cart</a>";
+        echo "Willkommen, " , unserialize($_SESSION["user"])->firstname, " ", unserialize($_SESSION["user"])->lastname;
+    }
         ?>
     
   </div>

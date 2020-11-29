@@ -27,9 +27,11 @@ function db_get_articles_from_category($cat_id) {
             $articles = array();
             $i = 0;
             while ($row = $res->fetch_assoc()) {
-                $articles[$i]['article_nr'] = $row['article_nr'];
-                $articles[$i]['name'] = $row['name'];
-                $articles[$i]['price'] = $row['price'];
+                $articles[$i] = new Article();
+                $articles[$i]->id = $row['article_nr'];
+                $articles[$i]->name = $row['name'];
+                $articles[$i]->price = $row['price'];
+                $articles[$i]->category = $row['category'];
                 $i++;
             }
     }
@@ -50,9 +52,11 @@ function db_get_article_from_id($art_id) {
             $articles = array();
             $i = 0;
             while ($row = $res->fetch_assoc()) {
-                $articles[$i]['article_nr'] = $row['article_nr'];
-                $articles[$i]['name'] = $row['name'];
-                $articles[$i]['price'] = $row['price'];
+                $articles[$i] = new Article();
+                $articles[$i]->id = $row['article_nr'];
+                $articles[$i]->name = $row['name'];
+                $articles[$i]->price = $row['price'];
+                $articles[$i]->category = $row['category'];
                 $i++;
             }
     }
@@ -70,9 +74,11 @@ function db_get_all_article() {
             $articles = array();
             $i = 0;
             while ($row = $res->fetch_assoc()) {
-                $articles[$i]['article_nr'] = $row['article_nr'];
-                $articles[$i]['name'] = $row['name'];
-                $articles[$i]['price'] = $row['price'];
+                $articles[$i] = new Article();
+                $articles[$i]->id = $row['article_nr'];
+                $articles[$i]->name = $row['name'];
+                $articles[$i]->price = $row['price'];
+                $articles[$i]->category = $row['category'];
                 $i++;
             }
     }

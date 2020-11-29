@@ -121,7 +121,6 @@ function db_order($kdNr) {
 }
 
 function db_get_orders($kdNr) {
-    echo $kdNr;
     $mysqli = db_connect();
     $sql = "SELECT * FROM cart JOIN cart_content ON fk_cart_id = cart.id JOIN article ON fk_article = article_nr WHERE cart.fk_kdnr = ? AND cart.ordered = 1";
     $con = $mysqli->prepare($sql);

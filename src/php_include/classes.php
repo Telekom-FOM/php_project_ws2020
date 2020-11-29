@@ -10,4 +10,11 @@ class User {
     public $country;
     public $phone;
 }
+
+class Article {
+    public $id;
+    public $name;
+    public $price;
+    public $category;
+}
 ?>
