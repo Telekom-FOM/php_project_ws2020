@@ -5,7 +5,8 @@ require_once("php_include/session.php");
 require_once("html_include/header.php");
 require_once('php_include/db_user.php');
 require_once('php_include/db_article.php');
-if (isset($_SESSION['user']) && $_SESSION['user'] != "1008") {
+require_once("php_include/classes.php");
+if (isset($_SESSION['user']) && unserialize($_SESSION['user'])->kd_nr != "1008") {
     header("Location: /");
 }
 

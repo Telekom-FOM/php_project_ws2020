@@ -1,6 +1,7 @@
 <?php
 require_once("html_include/base.html");
 require_once("php_include/session.php");
+require_once("php_include/classes.php");
 echo "<title>Das ist ein Shop</title>";
 require_once("html_include/header.php");
 require_once("html_include/footer.html");

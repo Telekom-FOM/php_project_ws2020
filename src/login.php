@@ -18,7 +18,7 @@ require_once("php_include/db_user.php");
 if (isset($_POST["email"])){
     if(db_check_login($_POST["email"], $_POST["password"])) {
         echo "logged in!";
-        session_create(db_get_kdNr($_POST["email"]));
+        session_create(db_get_user($_POST["email"]));
 	header("Location: /");
     }
     else {

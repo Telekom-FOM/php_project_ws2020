@@ -113,4 +113,27 @@ require_once("php_include/classes.php");
             return $res->fetch_assoc()["kd_nr"];
         }
 
+    function db_get_user($email) {
+        $mysqli = db_connect();
+            $sql = "SELECT * FROM user where email=?";
+            $con = $mysqli->prepare($sql);
+            $con->bind_param("s", $email);
+            $con->execute();
+            $res = $con->get_result();
+            while ($row = $res->fetch_assoc()) {
+                $user = new User;
+                $user->kd_nr = $row['kd_nr'];
+                $user->email = $row['email'];
+                $user->firstname = $row['firstname'];
+                $user->lastname = $row['lastname'];
+                $user->street = $row['street'];
+                $user->zip = $row['zip'];
+                $user->city = $row['city']; 
+                $user->country = $row['country'];
+                $user->phone = $row['phone'];
+            }
+            return $user;
+
+        }
+
 ?>
