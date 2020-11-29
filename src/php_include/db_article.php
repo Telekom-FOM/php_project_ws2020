@@ -49,18 +49,15 @@ function db_get_article_from_id($art_id) {
         return FALSE;
     }
     else {
-            $articles = array();
-            $i = 0;
             while ($row = $res->fetch_assoc()) {
-                $articles[$i] = new Article();
-                $articles[$i]->id = $row['article_nr'];
-                $articles[$i]->name = $row['name'];
-                $articles[$i]->price = $row['price'];
-                $articles[$i]->category = $row['category'];
-                $i++;
+                $article = new Article();
+                $article->id = $row['article_nr'];
+                $article->name = $row['name'];
+                $article->price = $row['price'];
+                $article->category = $row['category'];
             }
     }
-    return $articles;
+    return $article;
 }
 
 function db_get_all_article() {
