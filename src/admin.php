@@ -32,3 +32,11 @@ foreach($users as $user) {
 echo "</table>";
 echo "<br><pre>";
 print_r(db_get_all_article());
+
+//Print categories
+$categories = db_get_categories();
+echo "<table border=1><tr><th>ID</th><th>Name</th></tr>";
+foreach($categories as $category) {
+    echo "<tr><td><form action='/change_category.php' method='get'><input type='text' name ='id' value='" . $category->id . "' readonly></td><td><input type='text' value='" . $category->name . "' name='name'></td><td><input type='submit' name='action' value='change'><td><input type='submit' name='action' value='delete'></td></form></tr>"; 
+}
+echo "<tr><td><form action='/change_category.php' method='get'><input type='text' name ='id' value='auto_increment' readonly></td><td><input type='text' value='' placeholer='Kategoriename' name='name'></td><td><input type='submit' name='action' value='add'></form></tr>";
