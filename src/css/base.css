@@ -13,6 +13,26 @@ body {
     margin: 10rem;
 }
 
+.images {
+    border-radius: 12px;
+    display: block;
+    margin-left: 10px;
+    width: 200px;
+}
+
+div.card {
+    width: 50%;
+    background-color: #23272A;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 25px;
+    margin-right: 25px;
+    padding-top: 25px;
+}
+div.container {
+    text-align: left;
+    padding: 20px;
+}
+
 label {
     display: inline-block;
     width: 140px;

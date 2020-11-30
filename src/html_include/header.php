@@ -2,22 +2,25 @@
     <link rel="stylesheet" href="./css/navbar.css">
 </head>
 <div class="navbar">
-    <img src="./static/Banner.png" alt="Banner">
-    <a href="/">&#x2302</a>
-    <a href="/about.php">About</a>
-    <?php
-    if (unserialize($_SESSION["user"])->kd_nr == "1008") {
-        echo '<a href="/admin.php">Admin</a>'; } 
-        if (isset($_SESSION['user'])) {
-            echo '<a href="/logout.php">Logout</a>'; }
-        else {
-            echo '<a href="/login.php">Login</a>';
+    <a href="https://jupiter-store.de">
+    <img class="resize" src="./static/Banner.png" alt="Banner">
+    </a>
+    <div class="navbar-right">
+        <a class="link" href="/">&#x2302</a>
+        <a class="link" href="/about.php">About</a>
+        <?php
+        if (isset($_SESSION["user"]) && unserialize($_SESSION['user'])->is_admin == "1") {
+            echo '<a class="link" href="/admin.php">Admin</a>'; } 
+            if (isset($_SESSION['user'])) {
+                echo '<a class="link" href="/logout.php">Logout</a>'; }
+            else {
+                echo '<a class="link" href="/login.php">Login</a>';
+            }
+        if (isset($_SESSION["user"])){
+            echo "<a class='link' href='/orders.php'>Orders</a><a class='link' href='/cart.php'>Cart</a>";
+            echo "Willkommen, " , unserialize($_SESSION["user"])->firstname, " ", unserialize($_SESSION["user"])->lastname;
         }
-    if (isset($_SESSION["user"])){
-        echo "<a href='/orders.php'>Orders</a><a href='/cart.php'>Cart</a>";
-        echo "Willkommen, " , unserialize($_SESSION["user"])->firstname, " ", unserialize($_SESSION["user"])->lastname;
-    }
-        ?>
-    
-  </div>
+            ?>
+        </div>
+    </div>
   <div class="content">

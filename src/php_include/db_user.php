@@ -131,6 +131,7 @@ require_once("php_include/classes.php");
                 $user->city = $row['city']; 
                 $user->country = $row['country'];
                 $user->phone = $row['phone'];
+                $user->is_admin = $row['is_admin'];
             }
             return $user;
 

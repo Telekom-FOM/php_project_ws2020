@@ -4,8 +4,7 @@ require_once('php_include/db_user.php');
 require_once('php_include/db_article.php');
 
 echo "<title>Das ist ein Shop</title>";
-if (isset($_SESSION['user']) && (unserialize($_SESSION['user'])->kd_nr != "1008" || unserialize($_SESSION["user"]->kd_nr))) {
-
+if (!isset($_SESSION['user']) || (unserialize($_SESSION['user'])->is_admin == "0")) {
     header("Location: /");
 }
 
