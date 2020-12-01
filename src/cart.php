@@ -2,7 +2,9 @@
 require_once("php_include/basic_includes.php");
 require_once("php_include/db_cart.php");
 
-echo "<title>Das ist ein Shop</title>";
+echo "<title>Warenkorb</title>";
+
+unset($_SESSION["temp_cart"]);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     echo "danke für die bestellung. Sie werden weitergeleitet";
@@ -12,11 +14,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 else {
     $cart = db_show_cart(unserialize($_SESSION["user"])->kd_nr);
     if ($cart) {
-        echo "<table border=1><tr><th>ID</th><th>Name</th><th>Anzahl</th><th>Einzelpreis in €</th><th>Gesamtpreis in €</th></tr>";
+        echo "<table class='styled-table' border=1><tr><th>ID</th><th>Name</th><th>Anzahl</th><th>Einzelpreis in €</th><th>Gesamtpreis in €</th></tr>";
         foreach($cart as $content) {
-            echo "<tr><td>" . $content["id"] . "</td><td>". $content["name"] . "</td><td>" . $content["amount"] . "</td><td>" . $content["price"] . "</td><td>" . $content["price"]*$content["amount"] . "</td></tr>";
-        }
-        echo "</table>";
+      echo "<tr><form action='/change_cart.php' id='" .  $content["fk_article"] . "' method='get'>
+        <input type='hidden' class='form__field' form='" .  $content["fk_article"] . "' name ='id' value='" . $content["id"] . "' readonly>
+        <td><input type='text' value='" . $content["fk_article"] . "' name='article' readonly></td>
+        <td>" . $content["name"] . "</td>
+        <td><input type='number' class='form__field' form='" .  $content["fk_article"] . "'value='" . $content["amount"] . "' name='amount' required></td>
+        <td>" . $content["price"] . "</td>
+        <td>" . $content["price"]*$content["amount"] . "</td>
+        <td><input type='submit' class='form__field' form='" .  $content["fk_article"] . "'name='action' value='change'></td>
+        <td><input type='submit' class='form__field' form='" .  $content["fk_article"] . "' name='action' value='delete'></td></tr></form>"; 
+    }
+
+
         echo "<form method='POST'>
         <input type='submit' name='order' value='bestellen'>
         </form>";

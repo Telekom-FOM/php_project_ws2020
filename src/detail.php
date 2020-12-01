@@ -12,7 +12,7 @@ if (isset($_GET['id'])) {
         echo "<img src=/static/products/" . $article->id .".jpg><br>";
         echo $article->price . "€";
         echo '<form action=/cart_add.php method="get">
-        <button type="submit" name="id" value= ' . $_GET["id"] .'>Add</button>
+        <button type="submit" name="id" value= ' . $_GET["id"] .'>Zum Einkaufswagen hinzufügen</button>
         <input type="number" name="amount" value="1" required></input>
         </form>';
     }

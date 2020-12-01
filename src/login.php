@@ -5,7 +5,7 @@ require_once("php_include/db_user.php");
 echo "<title>Login</title>";
 
 if (isset($_GET["source"]) && $_GET["source"] == "cart") {
-    echo "Bitte loggen Sie sich ein!";
+    echo "Bitte loggen Sie sich ein um den Warenkorb zu nutzen!";
 }
 ?>
 <html>

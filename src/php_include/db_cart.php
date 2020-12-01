@@ -111,6 +111,39 @@ function db_already_in_cart($cartID, $article) {
         }
     }
 
+function db_change_cart_content($id, $amount, $article)
+{
+    $mysqli = db_connect();
+    $sql = "UPDATE cart_content SET amount = ? WHERE fk_cart_id = ? AND fk_article=?";
+    $con = $mysqli->prepare($sql);
+    $con->bind_param("iii", $amount, $id, $article);
+    if ($con->execute() === true)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function db_delete_cart_content($id, $article)
+{
+    $mysqli = db_connect();
+    $sql = "DELETE FROM cart_content where fk_cart_id = ? AND fk_article=?";
+    $con = $mysqli->prepare($sql);
+    $con->bind_param("ii", $id, $article);
+    if ($con->execute() === true)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+
 function db_order($user) {
     $cartID = db_get_cart($user->kd_nr);
     $mysqli = db_connect();

@@ -4,7 +4,7 @@ require_once("php_include/db_cart.php");
 
 if (isset($_SESSION['user'])) {
     db_add_to_cart(unserialize($_SESSION['user'])->kd_nr,$_GET['id'], $_GET['amount']);
-    header("Location: /orders.php");
+    header("Location: /cart.php");
 }
 
 else {
