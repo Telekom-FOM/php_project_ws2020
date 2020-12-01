@@ -22,11 +22,15 @@ INSERT INTO `user` (`Host`, `User`, `Password`, `Select_priv`, `Insert_priv`, `U
 	('%', 'mbenkert', '*95C8178AB972D5607CA95FC30F18DE5D8203254A', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', '', _binary '', _binary '', _binary '', 0, 0, 0, 0, '', '', 'N', 'N', '', 0.000000);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
+
 -- Exportiere Datenbank Struktur für webshop
 DROP DATABASE IF EXISTS `webshop`;
 CREATE DATABASE IF NOT EXISTS `webshop` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `webshop`;
 
+
+GRANT ALL PRIVILEGES ON webshop.* to app;
+FLUSH PRIVILEGES;
 -- Exportiere Struktur von Tabelle webshop.article
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE IF NOT EXISTS `article` (

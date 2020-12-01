@@ -2,7 +2,8 @@
 require_once("php_include/basic_includes.php");
 require_once("php_include/db_article.php");
 
-echo "<title>Das ist ein Shop</title>";
+
+echo "<title>Jupiter-Store</title>";
 if (isset($_SESSION["temp_cart"])) {
     require_once("php_include/db_cart.php");
     db_add_to_cart(unserialize($_SESSION["user"])->kd_nr, $_SESSION["temp_cart"]["id"], $_SESSION["temp_cart"]["amount"]);

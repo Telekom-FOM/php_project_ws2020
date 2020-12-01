@@ -9,12 +9,19 @@ class User {
     public $city;
     public $country;
     public $phone;
+    public $is_admin;
 }
 
 class Article {
     public $id;
     public $name;
     public $price;
-    public $category;
+    public $category_id;
+    public $category_name;
+}
+
+class Category {
+    public $id;
+    public $name;
 }
 ?>
