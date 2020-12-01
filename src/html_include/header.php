@@ -18,7 +18,7 @@
             }
         if (isset($_SESSION["user"])){
             echo "<a class='link' href='/orders.php'>Orders</a><a class='link' href='/cart.php'>Cart</a>";
-            echo "Willkommen, " , unserialize($_SESSION["user"])->firstname, " ", unserialize($_SESSION["user"])->lastname;
+            echo "<h3>Willkommen, " , unserialize($_SESSION["user"])->firstname, " ", unserialize($_SESSION["user"])->lastname;
         }
             ?>
         </div>

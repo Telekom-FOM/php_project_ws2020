@@ -8,7 +8,13 @@
 
 .navbar-right {
     float: right;
+    margin-right: 1rem;
   }
+
+.navbar-right h3 {
+  text-align: end;
+  margin-right: 5%;
+}
   
   .link {
     float: left;
