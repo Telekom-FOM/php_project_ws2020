@@ -119,7 +119,6 @@ function db_order($user) {
     $con = $mysqli->prepare($sql);
     $con->bind_param("i", $user->kd_nr);
     $con->execute();
-    send_order_mail($user);
 }
 
 function db_get_orders($kdNr) {

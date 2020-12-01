@@ -52,7 +52,6 @@ require_once("php_include/classes.php");
             $con->bind_param("sssssssss", $email, $password, $firstname, $lastname, $street, $zip, $city, $country, $phone);
             if ($con->execute() === TRUE) {
                 require_once("php_include/mail_helper.php");
-                send_login_mail($email, $firstname, $lastname);
                 return TRUE;
             }
             else {
