@@ -25,7 +25,7 @@ echo "<title>Das ist ein Shop</title>";
             <input type="text" name="country" required><br>
             <label for="phone"><b>Telefon</b></label>
             <input type="text" name="phone" required>
-            <input type="submit">
+            <input type="submit" value="Registrieren">
 </form>
 
 <?php

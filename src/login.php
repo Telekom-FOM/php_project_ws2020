@@ -13,9 +13,11 @@ if (isset($_GET["source"]) && $_GET["source"] == "cart") {
         <form method="POST">
             <input type="email" name="email" placeholder="email" requiered>
             <input type="password" name="password" placeholder="password" required>
-            <input type="submit">
+            <input type="submit" value="Login">
+</form><br>
+<form action="/register.php">
+<input type="submit" value="Konto erstellen!">
 </form>
-<a href="/register.php">Konto erstellen!</a>
 
 <?php
 

@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 else {
     $cart = db_show_cart(unserialize($_SESSION["user"])->kd_nr);
     if ($cart) {
-        echo "<table border=1><tr><th>ID</th><th>Name</th><th>Anzahl</th><th>Einzelpreis</th><th>Gesamtpreis</th></tr>";
+        echo "<table border=1><tr><th>ID</th><th>Name</th><th>Anzahl</th><th>Einzelpreis in €</th><th>Gesamtpreis in €</th></tr>";
         foreach($cart as $content) {
             echo "<tr><td>" . $content["id"] . "</td><td>". $content["name"] . "</td><td>" . $content["amount"] . "</td><td>" . $content["price"] . "</td><td>" . $content["price"]*$content["amount"] . "</td></tr>";
         }

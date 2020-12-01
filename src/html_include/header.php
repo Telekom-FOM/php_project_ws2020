@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="./css/navbar.css">
 </head>
 <div class="navbar">
-    <a href="https://jupiter-store.de">
+    <a href="/">
     <img class="resize" src="./static/Banner.png" alt="Banner">
     </a>
     <div class="navbar-right">
