@@ -16,22 +16,22 @@
   margin-right: 5%;
 }
   
-  .link {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
+.link {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
   
-  .link:hover {
+.link:hover {
     background: rgb(188, 0, 0);
     color: #f2f2f2;
   }
 
-  .resize {
+.resize {
     width: 30%;
     height: auto;
   }

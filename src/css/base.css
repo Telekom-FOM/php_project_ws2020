@@ -32,7 +32,16 @@ div.container {
     text-align: left;
     padding: 20px;
 }
-
+div.register {
+    background-color: #23272A;
+    padding: 25px;
+    float: right;
+}
+div.login {
+    background-color: #23272A;
+    padding: 25px;
+    float: left;
+}
 label {
     display: inline-block;
     width: 140px;
@@ -91,7 +100,7 @@ label {
 }
 
 .styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: 2px solid rgb(188, 0, 0);
 }
 
 .form__field {

@@ -1,4 +1,11 @@
 <?php
+//These are the classes used in the project
+/**
+ * User
+ * Article
+ * Category
+ */
+
 class User {
     public $kd_nr;
     public $email;
