@@ -12,12 +12,14 @@
         <?php
         //Check if user is an Admin show "Admin" button
         if (isset($_SESSION["user"]) && unserialize($_SESSION['user'])->is_admin == "1") {
-            echo "<a class='link' href='/admin.php'>Administration</a>"; }
+            echo "<a class='link' href='/admin.php'>Administration</a>"; 
+        }
             //Show logout, orders & cart button if user is logged in. Say Hello to user as well 
             if (isset($_SESSION["user"])) {
+                echo "<a class='link' href='/cart.php'>Einkaufswagen</a><a class='link' href='/orders.php'>Bestellungen</a>";
                 echo "<a class='link' href='/logout.php'>Abmelden</a>";
-                echo "<a class='link' href='/orders.php'>Bestellungen</a><a class='link' href='/cart.php'>Einkaufswagen</a>";
-                echo "<h3>Willkommen, " , unserialize($_SESSION["user"])->firstname, " ", unserialize($_SESSION["user"])->lastname; }
+                echo "<h3>Willkommen, " , unserialize($_SESSION["user"])->firstname, " ", unserialize($_SESSION["user"])->lastname; 
+            }
             else {
                 //Show login button if user not logged in
                 echo "<a class='link' href='/login.php'>Anmelden</a>";
