@@ -33,7 +33,6 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["firstna
     }
 }
 
-
 ?>
 
 <html>
@@ -50,7 +49,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["firstna
             <div class="register">
                 <form method="POST">
                     <label for="email"><b>Email</b></label>
-                    <input type="email" name="email" requiered><br>
+                    <input type="email" name="email" required><br>
                     <label for="password"><b>Passwort</b></label>
                     <input type="password" name="password" required><br>
                     <label for="firstname"><b>Vorname</b></label>

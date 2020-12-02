@@ -81,7 +81,7 @@ function db_get_articles_from_category($cat_id)
     $con->execute();
     $res = $con->get_result();
     if ($res->num_rows == 0) {
-        return false;
+        return FALSE;
     } else {
         $articles = array();
         $i        = 0;
