@@ -7,9 +7,33 @@ echo "<title>Login</title>";
 if (isset($_GET["source"]) && $_GET["source"] == "cart") {
     echo "Bitte loggen Sie sich ein um den Warenkorb zu nutzen!<br>";
 }
-if (isset($_GET["newuser"])){
+if (isset($_GET["newuser"])) {
     echo "Vielen Dank für die Registrierung! Loggen Sie sich bitte ein!";
 }
+
+if (isset($_SESSION["temp_cart"]))
+    $ifcart = "&source=cart";
+else {
+    $idcart = "";
+}
+
+if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["firstname"]) && isset($_POST["lastname"]) && isset($_POST["street"]) && isset($_POST["zip"]) && isset($_POST["city"]) && isset($_POST["phone"])) {
+    if (!db_check_if_user($_POST["email"])) {
+        db_create_user($_POST["email"], $_POST["password"], $_POST["firstname"], $_POST["lastname"], $_POST["street"], $_POST["zip"], $_POST["city"], $_POST["country"], $_POST["phone"]);
+        header("Location: /login.php?newuser=true$ifcart");
+    } else {
+        echo "Es besteht bereits ein Konto mit dieser Email-Adresse!";
+    }
+} else if (isset($_POST["email"])) {
+    if (db_check_login($_POST["email"], $_POST["password"])) {
+        session_create(db_get_user($_POST["email"]));
+        header("Location: /");
+    } else {
+        echo "Anmeldedaten fehlerhaft!";
+    }
+}
+
+
 ?>
 
 <html>
@@ -47,35 +71,6 @@ if (isset($_GET["newuser"])){
                 </form>
             </div>
         </div>
-            <?php
-                if (isset($_SESSION["temp_cart"]))
-                $ifcart = "&source=cart";
-                else {
-                    $idcart = "";
-                }
 
-                if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["firstname"]) && isset($_POST["lastname"]) && isset($_POST["street"]) && isset($_POST["zip"]) && isset($_POST["city"]) && isset($_POST["phone"])){
-                    if(!db_check_if_user($_POST["email"])) {
-                        db_create_user($_POST["email"], $_POST["password"], $_POST["firstname"], $_POST["lastname"], $_POST["street"], $_POST["zip"], $_POST["city"], $_POST["country"], $_POST["phone"]);
-                        header("Location: /login.php?newuser=true$ifcart");
-                    }
-                    else {
-                        echo "Es besteht bereits ein Konto mit dieser Email-Adresse!";
-                    }
-                }
-                else if (isset($_POST["email"])){
-                    if(db_check_login($_POST["email"], $_POST["password"])) {
-                        session_create(db_get_user($_POST["email"]));
-                    header("Location: /");
-                    }
-                    else {
-                        echo "Anmeldedaten fehlerhaft!";
-                    }
-                }
-
-
-            ?>
-    
 <form action="/login.php">
 </form>
-
