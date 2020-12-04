@@ -6,7 +6,8 @@ include("php_include/db_cart.php");
 if (isset($_SESSION["user"]) && unserialize($_SESSION["user"])) {
     db_add_to_cart(unserialize($_SESSION['user'])->kd_nr, $_GET['id'], $_GET['amount']);
     header("Location: /cart.php");
-//else, force login
+    //else, force login
+    
 } else {
     $_SESSION["temp_cart"] = array(
         "id" => $_GET["id"],
@@ -17,16 +18,19 @@ if (isset($_SESSION["user"]) && unserialize($_SESSION["user"])) {
 }
 
 //if change -> cart-article change
-if ($_GET["action"] == "change") {
-    if ($_GET["amount"] > 0) {
-        db_change_cart_content($_GET["id"], $_GET["amount"], $_GET["article"]);
-        //if article-amount set below 1 --> delete from cart
-    } else {
+if (isset($_GET["action"])) {
+    if ($_GET["action"] == "Ändern") {
+        if ($_GET["amount"] > 0) {
+            db_change_cart_content($_GET["id"], $_GET["amount"], $_GET["article"]);
+            //if article-amount set below 1 --> delete from cart
+            
+        } else {
+            db_delete_cart_content($_GET["id"], $_GET["article"]);
+        }
+        //if delete -> cart-article delete
+        
+    } elseif ($_GET["action"] == "Löschen") {
         db_delete_cart_content($_GET["id"], $_GET["article"]);
     }
-    //if delete -> cart-article delete
-} elseif ($_GET["action"] == "delete") {
-    db_delete_cart_content($_GET["id"], $_GET["article"]);
 }
-
 header("Location: /cart.php");

@@ -29,8 +29,8 @@ else {
         <td><input type='number' class='form__field' form='" . $content["fk_article"] . "'value='" . $content["amount"] . "' name='amount' required></td>
         <td>" . $content["price"] . "</td>
         <td>" . $content["price"] * $content["amount"] . "</td>
-        <td><input type='submit' class='form__field' form='" . $content["fk_article"] . "'name='action' value='change'></td>
-        <td><input type='submit' class='form__field' form='" . $content["fk_article"] . "' name='action' value='delete'></td></tr></form>";
+        <td><input type='submit' class='form__field' form='" . $content["fk_article"] . "'name='action' value='Ändern'></td>
+        <td><input type='submit' class='form__field' form='" . $content["fk_article"] . "' name='action' value='Löschen'></td></tr></form>";
         }
         echo "<form method='POST'>
         <input type='submit' name='order' value='bestellen'>

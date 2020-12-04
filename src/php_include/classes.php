@@ -31,4 +31,13 @@ class Category {
     public $id;
     public $name;
 }
+
+class Review {
+    public $id;
+    public $fk_user_id;
+    public $stars;
+    public $message;
+    public $response_id;
+    public $name;
+}
 ?>

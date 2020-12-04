@@ -16,7 +16,7 @@
         }
             //Show logout, orders & cart button if user is logged in. Say Hello to user as well 
             if (isset($_SESSION["user"])) {
-                echo "<a class='link' href='/cart.php'>Einkaufswagen</a><a class='link' href='/orders.php'>Bestellungen</a>";
+                echo "<a class='link' href='/cart.php'>&#128722</a><a class='link' href='/orders.php'>Bestellungen</a>";
                 echo "<a class='link' href='/logout.php'>Abmelden</a>";
                 echo "<h3>Willkommen, " , unserialize($_SESSION["user"])->firstname, " ", unserialize($_SESSION["user"])->lastname; 
             }

@@ -25,7 +25,7 @@ foreach ($categories as $category) {
 }
 echo "<tr><form action='/change_category.php' id='new_cat' method='get'>
     <td>automatisch</td>
-    <td><input type='text' class='form__field' form='new_cat' value='' placeholer='Kategoriename' name='name' required></td>
+    <td><input type='text' class='form__field' form='new_cat' value='' placeholder='Kategoriename' name='name' required></td>
     <td><input type='submit' class='form__field' form='new_cat' name='action' value='add'></tr>";
 echo "</form></table><br>";
 
