@@ -1,6 +1,16 @@
 <?php
 require_once("php_include/db_basic.php");
 require_once("php_include/classes.php");
+//******************************************************************Reviews******************************************************************/
+/**
+ * db_get_review_from_article_id($art_id)
+ * db_get_response_from_review_id($review_id)
+ * db_add_review($art_id, $user_id, $stars, $message)
+ * db_add_response($art_id, $user_id, $message, $id)
+ * db_delete_review($id)
+ */
+
+//Returns review data or false if none in db
 
 function db_get_review_from_article_id($art_id)
 {
@@ -28,6 +38,8 @@ function db_get_review_from_article_id($art_id)
     }
     return $reviews;
 }
+
+//Returns response data or false if none in db
 function db_get_response_from_review_id($review_id)
 {
     $mysqli = db_connect();
@@ -54,7 +66,8 @@ function db_get_response_from_review_id($review_id)
     }
     return $responses;
 }
-//print_r(db_get_review_from_article_id(6267));
+
+//Adds review to db. Returns true if success, false if error
 function db_add_review($art_id, $user_id, $stars, $message)
 {
     $mysqli = db_connect();
@@ -67,6 +80,8 @@ function db_add_review($art_id, $user_id, $stars, $message)
         return FALSE;
     }
 }
+
+//Adds response to db. Returns true if success, false if error
 function db_add_response($art_id, $user_id, $message, $id)
 {
     $mysqli = db_connect();
@@ -79,6 +94,8 @@ function db_add_response($art_id, $user_id, $message, $id)
         return FALSE;
     }
 }
+
+//Deletes review from db. Returns true if success, false if error
 function db_delete_review($id)
 {
     $mysqli = db_connect();

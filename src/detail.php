@@ -35,6 +35,7 @@ if (isset($_GET['id'])) {
         </form>";
     }
 
+    //if reviews in db
     if ($reviews) {
     foreach($reviews as $review) {
         $responses = db_get_response_from_review_id($review->id);
@@ -43,6 +44,7 @@ if (isset($_GET['id'])) {
             }
             echo "<p>" . $review->name . ": " . $review->message . "</p>";
             echo "";
+            //only creator of review or admin can delete review
             if((unserialize($_SESSION["user"])->kd_nr == $review->user_id) || (unserialize($_SESSION["user"])->is_admin == 1)) {
                 echo "<form action='/change_review.php' id='del_review' method='get'>
                     <input type='hidden' form='del_review' name ='id' value='" . $review->id . "' readonly>
@@ -50,6 +52,7 @@ if (isset($_GET['id'])) {
                     <input type='submit' form='del_review' name='action' value='Löschen'>
                     </form>";
             }
+            //only logged in user can respond to review
             if(isset($_SESSION["user"])) {
             echo "<form action='/change_review.php' id='add_response " . $review->id . "' method='get'>
                     <input type='hidden' form='add_response " . $review->id . "' name ='art_id' value='" . $_GET["id"] . "' readonly>
@@ -59,10 +62,12 @@ if (isset($_GET['id'])) {
                     <input type='submit' form='add_response " . $review->id . "' name='action' value='Antworten'>
                     </form>";
             }
+            //if responses in database
             if ($responses) {
                 echo "<h4>Antworten:</h4>";
                 foreach($responses as $response) {
                     echo "<p class='response'>" . $response->name . ": " . $response->message . "</p>";
+                    //only creator of response or admin can delete response
                     if(unserialize($_SESSION["user"])->kd_nr == $response->user_id || (unserialize($_SESSION["user"])->is_admin == 1)) {
                         echo "<form action='/change_review.php' id='del_response " . $response->id . "' method='get'>
                             <input type='hidden' form='del_response " . $response->id . "' name ='id' value='" . $response->id . "' readonly>
