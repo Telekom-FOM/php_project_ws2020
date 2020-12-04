@@ -14,11 +14,11 @@ if (!isset($_SESSION['user']) || (unserialize($_SESSION['user'])->is_admin == "0
 $categories = db_get_categories();
 
 //Print categories-table with the ability to add, change or remove categories
-echo "<table class='styled-table' border=1><tr><th>ID</th><th>Name</th><th></th><th></th></tr>";
+echo "<details><summary>Kategorien</summary><table class='styled-table' border=1><tr><th>ID</th><th>Name</th><th></th><th></th></tr>";
 foreach ($categories as $category) {
     echo "<tr><form action='/change_category.php' id='" . $category->id . "' method='get'>
         <input type='hidden' class='form__field' form='" . $category->id . "' name ='id' value='" . $category->id . "' readonly>
-        <td>" . $category->id . "</td>
+        <td><a href=/category.php?id=" . $category->id . "&category=" . $category->name . " target='_blank'>" . $category->id . "</a></td>
         <td><input type='text' class='form__field' form='" . $category->id . "'value='" . $category->name . "' name='name' required></td>
         <td><input type='submit' class='form__field' form='" . $category->id . "'name='action' value='change'>
         <td><input type='submit' class='form__field' form='" . $category->id . "' name='action' value='delete'></td></form></tr>";
@@ -27,17 +27,17 @@ echo "<tr><form action='/change_category.php' id='new_cat' method='get'>
     <td>automatisch</td>
     <td><input type='text' class='form__field' form='new_cat' value='' placeholder='Kategoriename' name='name' required></td>
     <td><input type='submit' class='form__field' form='new_cat' name='action' value='add'></tr>";
-echo "</form></table><br>";
+echo "</form></table><br></details>";
 
 //get article
 $articles = db_get_all_article();
 
 //Print articles-table with the ability to add, change or remove articles
-echo "<table class='styled-table' border=1><tr><th>ID</th><th>Name</th><th>Preis in €</th><th>Kategorie</th><th></th><th></th></tr>";
+echo "<details><summary>Artikel</summary><table class='styled-table' border=1><tr><th>ID</th><th>Name</th><th>Preis in €</th><th>Kategorie</th><th></th><th></th></tr>";
 foreach ($articles as $article) {
     echo "<tr><form action='/change_article.php' id='" . $article->id . "' method='get'>
     <input type='hidden' class='form__field' name ='id' value='" . $article->id . "' readonly>
-        <td>" . $article->id . "</td>
+        <td><a href=/detail.php?id=" . $article->id . " target='_blank'>" . $article->id . "</a></td>
         <td><input type='text' class='form__field' form='" . $article->id . "' value='" . $article->name . "' name='name' required></td>
         <td><input type='number' class='form__field' form='" . $article->id . "' min=0 step=0.01 value='" . $article->price . "' name='price' required></td>
         <td><select form='" . $article->id . "' name='category'>";
@@ -59,4 +59,4 @@ echo "<tr><form action='/change_article.php' id='new_art' method='get'>
 foreach ($categories as $category) {
     echo "<option value='" . $category->id . "'>" . $category->name . "</option>";
 }
-echo "</td><td><input type='submit' class='form__field' form='new_art' name='action' value='add'></tr></form></table>";
+echo "</td><td><input type='submit' class='form__field' form='new_art' name='action' value='add'></tr></form></table></details>";

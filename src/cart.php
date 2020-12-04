@@ -25,7 +25,7 @@ else {
         <input type='hidden' class='form__field' form='" . $content["fk_article"] . "' name ='id' value='" . $content["id"] . "' readonly>
         <input type='hidden' value='" . $content["fk_article"] . "' name='article' readonly>
         <td>" . $content["fk_article"] . "</td>
-        <td>" . $content["name"] . "</td>
+        <td><a href='/detail.php?id=" . $content["fk_article"] . "'>" . $content["name"] . "</a></td>
         <td><input type='number' class='form__field' form='" . $content["fk_article"] . "'value='" . $content["amount"] . "' name='amount' required></td>
         <td>" . $content["price"] . "</td>
         <td>" . $content["price"] * $content["amount"] . "</td>

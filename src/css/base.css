@@ -55,15 +55,20 @@ div.header {
 }
 div.price {
     background-color: rgb(188, 0, 0);
+    margin: 25px;
+    margin-top: 50px;
+    padding: 10px;
 }
 div.review {
     background-color: #23272A;
     float: bottom;
     padding: 20px;
-    margin-top: 300px;
+    margin-top: 220px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 p.response {
     margin-left: 50px;
+    margin-bottom: 20px;
 }
 label {
     display: inline-block;
