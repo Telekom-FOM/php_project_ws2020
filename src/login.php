@@ -39,6 +39,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["firstna
     <body>
         <div>
             <div class="login">
+                <h5>Mit bestehendem Konto anmelden:</h5>
                 <form method="POST">
                     <input type="email" name="email" placeholder="email" requiered>
                     <input type="password" name="password" placeholder="password" required>
@@ -47,6 +48,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["firstna
             </div>
 
             <div class="register">
+                <h5>Neues Konto eröffnen:</h5>
                 <form method="POST">
                     <label for="email"><b>Email</b></label>
                     <input type="email" name="email" required><br>
