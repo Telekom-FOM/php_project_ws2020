@@ -8,6 +8,7 @@ if (isset($_GET['id'])) {
     //get article
     $article = db_get_article_from_id($_GET['id']);
     $reviews = db_get_review_from_article_id($_GET['id']);
+    $review_avg = db_get_review_avg_from_article_id($_GET['id']);
     //if article-id in database, show
     if ($article) {
         echo "<title>" . $article->name . "</title>";
@@ -24,7 +25,14 @@ if (isset($_GET['id'])) {
         echo "<title>Nicht gefunden</title>";
         echo "Artikelnummer ", $_GET['id'], " unbekannt";
     }
-    echo "<div class='review'><details><summary>Rezensionen</summary>";
+    echo "<div class='review'><details><summary>Rezensionen ";
+    //average rating
+    if ($review_avg) {
+        for ($i=0; $i < $review_avg; $i++) { 
+            echo "<img width='20px' height='20px' src=/static/outlined_star1600.png>";
+        }
+    }
+    echo "</summary>";
     if(isset($_SESSION["user"])) {
     echo "<form action='/change_review.php' id='new_review' method='get'>
         <input type='hidden' form='new_review' name ='art_id' value='" . $_GET["id"] . "' readonly>

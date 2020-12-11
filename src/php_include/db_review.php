@@ -39,6 +39,22 @@ function db_get_review_from_article_id($art_id)
     return $reviews;
 }
 
+function db_get_review_avg_from_article_id($art_id)
+{
+    $mysqli = db_connect();
+    $sql    = "SELECT AVG(stars) AS stars FROM review JOIN user on fk_user_id = kd_nr WHERE fk_article_id = ? AND response_id = 0";
+    $con    = $mysqli->prepare($sql);
+    $con->bind_param("i", $art_id);
+    $con->execute();
+    $res = $con->get_result();
+    if ($res->num_rows == 0) {
+        return FALSE;
+    } else {
+        $stars = $res->fetch_assoc()["stars"];
+        return $stars;
+    }
+}
+
 //Returns response data or false if none in db
 function db_get_response_from_review_id($review_id)
 {
