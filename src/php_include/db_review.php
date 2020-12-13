@@ -42,7 +42,7 @@ function db_get_review_from_article_id($art_id)
 function db_get_review_avg_from_article_id($art_id)
 {
     $mysqli = db_connect();
-    $sql    = "SELECT AVG(stars) AS stars FROM review JOIN user on fk_user_id = kd_nr WHERE fk_article_id = ? AND response_id = 0";
+    $sql    = "SELECT AVG(stars) AS stars FROM review WHERE fk_article_id = ? AND response_id = 0";
     $con    = $mysqli->prepare($sql);
     $con->bind_param("i", $art_id);
     $con->execute();
