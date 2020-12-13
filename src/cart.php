@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 else {
     $cart = db_show_cart(unserialize($_SESSION["user"])->kd_nr);
     if ($cart) {
+        $sum = 0;
         echo "<table class='styled-table' border=1><tr><th>ID</th><th>Name</th><th>Anzahl</th><th>Einzelpreis in €</th><th>Gesamtpreis in €</th></tr>";
         foreach ($cart as $content) {
             echo "<tr><form action='/change_cart.php' id='" . $content["fk_article"] . "' method='get'>
@@ -31,7 +32,9 @@ else {
         <td>" . $content["price"] * $content["amount"] . "</td>
         <td><input type='submit' class='form__field' form='" . $content["fk_article"] . "'name='action' value='Ändern'></td>
         <td><input type='submit' class='form__field' form='" . $content["fk_article"] . "' name='action' value='Löschen'></td></tr></form>";
+        $sum += $content["price"] * $content["amount"];
         }
+        echo "<tr><td></td><td></td><td></td><td></td><td>$sum €</td></tr></table>";
         echo "<form method='POST'>
         <input type='submit' name='order' value='bestellen'>
         </form>";
