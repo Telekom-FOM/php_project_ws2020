@@ -12,6 +12,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+CREATE USER 'app'@'%' IDENTIFIED BY ';(=xc3*8Ce]j5g!Y:G;UMPFr!if/}sfG';
 
 -- Exportiere Datenbank Struktur für webshop
 CREATE DATABASE IF NOT EXISTS `webshop` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
@@ -152,8 +153,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`kd_nr`, `email`, `password`, `firstname`, `lastname`, `street`, `zip`, `city`, `country`, `phone`, `is_admin`) VALUES
-	(00000001008, 'max.benkert@gmx.de', '1a1dc91c907325c69271ddf0c944bc72', 'Max', 'Benkert', 'Zum Nussacker 16', '97500', 'Ebelsbach', 'Germany', '+4915115886212', 1),
-	(00000001009, 'kev.hohm@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'Kevin', 'Hohm', 'Schiffbauplatz 4b', '96047', 'Bamberg', 'Deutschland', '015174440867', 1);
+	(00000001001, 'admin@localhost.tld', '1a1dc91c907325c69271ddf0c944bc72', 'Linus', 'Torvalds', 'Main Street 5', '12345', 'Berlin', 'Deutschland', '+4912348712', 1),
+	(00000001002, 'customer@localhost.tld', '1a1dc91c907325c69271ddf0c944bc72', 'Jonas', 'Meier', 'Alexanderplatz 1', '10115', 'Berlin', 'Deutschland', '+491234812412', 0);
+
+GRANT ALL PRIVILEGES ON webshop.* TO 'app'@'%';
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
